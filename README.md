@@ -1,3 +1,15 @@
-# andrew-tiger
+# Andrew Tiger
 
-[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/andrewnationdev/andrew-tiger)
+```
+const store = createStore((set) => ({ count: 0 }));
+```
+
+```
+store.subscribe((s) => console.log(s.count));
+```
+
+```
+store.setState((s) => ({ count: s.count + 1 }));
+```
+
+Execução dos testes: `npm test`
