@@ -42,3 +42,17 @@ describe('Andrew Tiger - Otimização de Shallow Compare', () => {
     expect(spy).not.toHaveBeenCalled();
   });
 });
+
+it('deve atualizar o estado após uma operação assíncrona', async () => {
+  const store = createStore((set) => ({
+    dados: [],
+    carregar: async () => {
+      await new Promise(resolve => setTimeout(resolve, 50));
+      set({ dados: [1, 2, 3] });
+    }
+  }));
+
+  await store.getState().carregar();
+
+  expect(store.getState().dados).toEqual([1, 2, 3]);
+});
