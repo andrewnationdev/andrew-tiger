@@ -9,8 +9,12 @@ export function useTigerVue<T, S = T>(
 ) {
   const data = shallowRef(selector(store.getState()));
 
-  const unsubscribe = store.subscribe((newState) => {
-    data.value = selector(newState);
+  const unsubscribe = store.subscribe((nextState) => {
+    const nextSelection = selector(nextState);
+    
+    if (!Object.is(data.value, nextSelection)) {
+      data.value = nextSelection;
+    }
   });
 
   onScopeDispose(unsubscribe);
