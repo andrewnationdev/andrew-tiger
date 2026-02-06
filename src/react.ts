@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from 'react';
 
 /**
- * Hook para conectar componentes React ao TigerJS.
+ * Hook para conectar componentes React ao Andrew Tiger.
  * * @param store - A instância da store criada com createStore.
  * @param selector - Uma função para selecionar apenas um pedaço do estado.
  * @returns O estado selecionado.

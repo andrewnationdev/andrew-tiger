@@ -1,12 +1,42 @@
 {
-  "name": "tigerjs",
-  "private": true,
-  "version": "1.0.0",
+  "name": "andrew-tiger",
+  "author": "AndrewNation",
+  "license": "MIT",
+  "keywords": [
+    "state",
+    "react",
+    "vue",
+    "minimalist",
+    "tigerjs",
+    "state management"
+  ],
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.0.0-alpha",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/vanilla.ts",
-    "./react": "./src/react.ts",
-    "./vue": "./src/vue.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js",
+      "default": "./dist/react.js"
+    },
+    "./vue": {
+      "types": "./dist/vue.d.ts",
+      "import": "./dist/vue.js",
+      "default": "./dist/vue.js"
+    }
   },
   "scripts": {
     "dev": "vite",
@@ -15,12 +45,13 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/react": "^18.2.0",
+    "react": "^18.2.0",
     "tsx": "^4.21.0",
     "typescript": "~5.9.3",
     "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.18",
-    "@types/react": "^18.2.0",
-    "react": "^18.2.0",
     "vue": "^3.4.0"
   }
 }

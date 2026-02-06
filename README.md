@@ -1,24 +1,68 @@
-# Andrew Tiger
+# 🐯 Andrew Tiger
 
-This project is the MVP of a state management library inspired by Zustand written in TypeScript for both Vue and ReactJS frameworks.
+O **Andrew Tiger** é um gerenciador de estado para ser simples, performático e multi-framework por natureza (ReactJS e Vue). Ele utiliza uma lógica de **Shallow Comparison** nativa para garantir que os componentes do seu aplicativo só atualizem quando for necessário.
 
-Este projeto é o MVP (produto mínimo viável) de uma biblioteca de gerenciamento de estado inspirada pelo Zustand escrita em TypeScript para os frameworks Vue e ReactJS.
+AVISO: Esta biblioteca está em estado inicial de desenvolvimento e por isso podem haver bugs, que poderão ser reportados no repositório oficial do projeto no GitHub aqui.
 
-1- Use this to initialize a store:
+## ✨ Por que Andrew Tiger?
 
-```ts
-const store = createStore((set) => ({ count: 0 }));
+- **🚀 Leve**.
+- **🧩 Multi-framework:** Suporte nativo e otimizado para **React** e **Vue**.
+- **⚡ Performance:** Comparações rasas e suporte a seletores para evitar re-renderizações sem necessidade.
+- **🛠 Zero Boilerplate:** Sem Providers complexos ou configurações extensas.
+- **🌐 Async Ready:** Suporte para chamadas assíncronas dentro da store.
+
+## 🚀 Instalação
+
+```bash
+npm install andrew-tiger
 ```
 
-2- Use this to subscribe and listen to changes whenever the value changes:
+## 🧠 Core (Vanilla)
+A base do Andrew Tiger é independente de framework.
 
 ```ts
-store.subscribe((s) => console.log(s.count));
+import { createStore } from 'andrew-tiger';
+
+const store = createStore((set) => ({
+  count: 0,
+  viagens: [],
+  increment: () => set((state) => ({ count: state.count + 1 })),
+  fetchViagens: async () => {
+    const data = await fetch('/api/viagens').then(res => res.json());
+    set({ viagens: data });
+  }
+}));
 ```
 
-Setar o estado
+## ⚛️ React
 ```ts
-store.setState((s) => ({ count: s.count + 1 }));
+import { useTiger } from 'andrew-tiger/react';
+import { store } from './store';
+
+function Counter() {
+  // O componente só re-renderiza se o valor mudar
+  const count = useTiger(store, (s) => s.count);
+  const { increment } = store.getState();
+
+  return <button onClick={increment}>{count}</button>;
+}
 ```
 
-Execução dos testes: `npm test`
+## 🟢 Vue/Nuxt
+```ts
+<script setup>
+import { useTigerVue } from 'andrew-tiger/vue';
+import { store } from './store';
+
+const count = useTigerVue(store, (s) => s.count);
+const { increment } = store.getState();
+</script>
+
+<template>
+  <button @click="increment">{{ count }}</button>
+</template>
+```
+
+🛠️ Decisões de Arquitetura do Projeto
+Construí o Andrew Tiger seguindo o princípio da imutabilidade previsível. Pelo uso do `Object.is` para validar as mudanças de estado, se garante um ciclo de vida de dados limpo e eficiente, ideal para aplicações que exigem performance sem a dificuldade de implementar ferramentas maiores.
