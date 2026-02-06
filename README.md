@@ -2,7 +2,7 @@
 
 O **Andrew Tiger** é um gerenciador de estado para ser simples, performático e multi-framework por natureza (ReactJS e Vue). Ele utiliza uma lógica de **Shallow Comparison** nativa para garantir que os componentes do seu aplicativo só atualizem quando for necessário.
 
-AVISO: Esta biblioteca está em estado inicial de desenvolvimento e por isso podem haver bugs, que poderão ser reportados no repositório oficial do projeto no GitHub aqui.
+AVISO: Esta biblioteca está em estado inicial de desenvolvimento e por isso podem haver bugs, que poderão ser reportados no repositório oficial do projeto no GitHub [aqui](https://github.com/andrewnationdev/andrew-tiger).
 
 ## ✨ Por que Andrew Tiger?
 
